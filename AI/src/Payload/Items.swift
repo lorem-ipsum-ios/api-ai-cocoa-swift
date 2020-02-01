@@ -13,17 +13,18 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 public struct Items : Codable {
-	public let type : String?
-	public let text : String?
-	public let amount : String?
-	public let dueDate : String?
-	public let paidDate : String?
-	public let color : String?
-    public let accountNumber: String?
-    public let tagLabel: String?
+	public let type: String?
+        public let billID: String?
+	public let text: String?
+	public let amount: String?
+	public let dueDate: String?
+	public let paidDate: String?
+	public let color: String?
+        public let accountNumber: String?
+        public let tagLabel: String?
 
 	enum CodingKeys: String, CodingKey {
-
+        case billID = "bill-id"
 		case type = "type"
 		case text = "text"
 		case amount = "amount"
@@ -37,6 +38,7 @@ public struct Items : Codable {
   public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		type = try values.decodeIfPresent(String.self, forKey: .type)
+        billID = try values.decodeIfPresent(String.self, forKey: .billID)
 		text = try values.decodeIfPresent(String.self, forKey: .text)
 		amount = try values.decodeIfPresent(String.self, forKey: .amount)
 		dueDate = try values.decodeIfPresent(String.self, forKey: .dueDate)
@@ -45,5 +47,4 @@ public struct Items : Codable {
         accountNumber = try values.decodeIfPresent(String.self, forKey: .accountNumber)
         tagLabel = try values.decodeIfPresent(String.self, forKey: .tagLabel)
 	}
-
 }

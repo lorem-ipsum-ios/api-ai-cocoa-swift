@@ -87,8 +87,18 @@ public struct QueryParameters {
     public var sessionId: String? = SessionStorage.defaultSessionIdentifier
     public var timeZone: TimeZone? = TimeZone.autoupdatingCurrent
     public var entities: [Entity] = []
+    public var originalRequest: OriginalRequest? = nil
     
     public init() {}
+}
+
+public struct OriginalRequest {
+    public var source: String
+    public var data: [String: String]
+    public init(source: String, data: [String: String]) {
+        self.source = source
+        self.data = data
+    }
 }
 
 extension QueryParameters {
@@ -120,6 +130,9 @@ extension QueryParameters {
             return entityObject
         })
         
+        if let originalRequest = originalRequest {
+            parameters["originalRequest"] = ["source": originalRequest.source, "data": originalRequest.data]
+        }
         return parameters
     }
 }

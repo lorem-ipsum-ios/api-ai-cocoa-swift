@@ -14,14 +14,15 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 import Foundation
 public struct Items : Codable {
 	public let type: String?
-        public let billID: String?
+    public let billID: String?
 	public let text: String?
 	public let amount: String?
 	public let dueDate: String?
 	public let paidDate: String?
 	public let color: String?
-        public let accountNumber: String?
-        public let tagLabel: String?
+    public let accountNumber: String?
+    public let tagLabel: String?
+    public let status: String?
 
 	enum CodingKeys: String, CodingKey {
         case billID = "bill-id"
@@ -33,6 +34,7 @@ public struct Items : Codable {
 		case color = "color"
         case accountNumber = "account-number"
         case tagLabel = "tag"
+        case status = "status"
 	}
 
   public init(from decoder: Decoder) throws {
@@ -46,5 +48,6 @@ public struct Items : Codable {
 		color = try values.decodeIfPresent(String.self, forKey: .color)
         accountNumber = try values.decodeIfPresent(String.self, forKey: .accountNumber)
         tagLabel = try values.decodeIfPresent(String.self, forKey: .tagLabel)
+        status = try values.decodeIfPresent(String.self, forKey: .status)
 	}
 }

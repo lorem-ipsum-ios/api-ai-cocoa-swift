@@ -88,6 +88,7 @@ public struct QueryParameters {
     public var timeZone: TimeZone? = TimeZone.autoupdatingCurrent
     public var entities: [Entity] = []
     public var originalRequest: OriginalRequest? = nil
+    public var event: Event? = nil
     
     public init() {}
 }
@@ -97,6 +98,14 @@ public struct OriginalRequest {
     public var data: [String: String]
     public init(source: String, data: [String: String]) {
         self.source = source
+        self.data = data
+    }
+}
+public struct Event {
+    public var name: String
+    public var data: [String: String]
+    public init(name: String, data: [String: String]) {
+        self.name = name
         self.data = data
     }
 }
@@ -133,6 +142,11 @@ extension QueryParameters {
         if let originalRequest = originalRequest {
             parameters["originalRequest"] = ["source": originalRequest.source, "data": originalRequest.data]
         }
+        
+        if let event = event {
+            parameters["event"] = ["name": event.name, "data": event.data]
+        }
+        
         return parameters
     }
 }

@@ -23,6 +23,7 @@ public struct Items : Codable {
     public let accountNumber: String?
     public let tagLabel: String?
     public let status: String?
+    public let capAmount: String?
 
 	enum CodingKeys: String, CodingKey {
         case billID = "bill-id"
@@ -35,6 +36,7 @@ public struct Items : Codable {
         case accountNumber = "account-number"
         case tagLabel = "tag"
         case status = "status"
+        case capAmount = "capAmount"
 	}
 
   public init(from decoder: Decoder) throws {
@@ -49,5 +51,6 @@ public struct Items : Codable {
         accountNumber = try values.decodeIfPresent(String.self, forKey: .accountNumber)
         tagLabel = try values.decodeIfPresent(String.self, forKey: .tagLabel)
         status = try values.decodeIfPresent(String.self, forKey: .status)
+        capAmount = try values.decodeIfPresent(String.self, forKey: .capAmount)
 	}
 }

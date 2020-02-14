@@ -95,8 +95,8 @@ public struct QueryParameters {
 
 public struct OriginalRequest {
     public var source: String
-    public var data: [String: String]
-    public init(source: String, data: [String: String]) {
+    public var data: [String: Any]
+    public init(source: String, data: [String: Any]) {
         self.source = source
         self.data = data
     }
